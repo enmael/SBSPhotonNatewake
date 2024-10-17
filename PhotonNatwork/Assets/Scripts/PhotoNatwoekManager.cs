@@ -5,6 +5,7 @@ using Photon.Pun;
 using UnityEngine.UI;
 using PlayFab.ClientModels;
 using PlayFab;
+using UnityEditor.PackageManager.Requests;
 
 public class PhotoNatwoekManager : MonoBehaviourPunCallbacks // 상속 받음 
 {
@@ -12,14 +13,14 @@ public class PhotoNatwoekManager : MonoBehaviourPunCallbacks // 상속 받음
     [SerializeField] InputField passwordInputField;
 
 
-    public void Sucess(LoinResult loinResult)
+    public void Success(LoginResult loinResult)
     {
-        
-        PhotonNetwork.AutomaticallySyncScene = false; // 단체로 이동하는걸 방지하려고 특정한 상황에서만 true
 
-        PhotonNetwork.GameVersion = "1.0f"; //버전은 통일해야된다.
+        PhotonNetwork.AutomaticallySyncScene = false;
 
-        PhotonNetwork.LoadLevel("LobbyScenes"); //신엘리로 해도 되는데 이걸 권장한다. 포톤에선 
+        PhotonNetwork.GameVersion = "1.0f";
+
+        PhotonNetwork.LoadLevel("LobbyScenes");
     }
 
     public void Success(RegisterPlayFabUserResult registerPlayFabUserResult)
@@ -29,11 +30,44 @@ public class PhotoNatwoekManager : MonoBehaviourPunCallbacks // 상속 받음
 
     public void Failure(PlayFabError playFabError)
     {
-        Debug.Log(playFabError.GenerateErrorReport());
+        PopUpManager.Instance.Show(AlarmType.SIGNINFAILURE, playFabError.GenerateErrorReport());
+        //Debug.Log(playFabError.GenerateErrorReport());
     }
 
+    public void OnSignUp()
+    {
+        var result = new RegisterPlayFabUserRequest
+        {
+            Email = enmailInputField.text,
+            Password = passwordInputField.text,
+            RequireBothUsernameAndEmail = false,
 
+        };
 
+        PlayFabClientAPI.RegisterPlayFabUser
+        (
+            result,
+            Success,
+            Failure
+         );
+            
+        
+    }
 
+    public void OnSigIn()
+    {
+        var request = new LoginWithEmailAddressRequest
+        {
+            Email = enmailInputField.text,
+            Password = passwordInputField.text, 
+        };
+
+        PlayFabClientAPI.LoginWithEmailAddress
+        (
+                request,
+                Success,
+                Failure
+         );
+    }
 
 }
