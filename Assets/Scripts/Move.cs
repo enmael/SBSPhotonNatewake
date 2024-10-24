@@ -7,14 +7,14 @@ public class Move : MonoBehaviour
     [SerializeField] float speed = 5.0f;
     [SerializeField] Vector3 direction;
 
-    public void Movement(Rigidbody rigidbody)
+    public void Movement(Rigidbody rigidBody)
     {
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.z = Input.GetAxisRaw("Vertical");
 
         direction.Normalize();
 
-        rigidbody.position += rigidbody.transform.TransformDirection(direction * speed * Time.deltaTime);
+        rigidBody.position += rigidBody.transform.TransformDirection(direction * speed * Time.deltaTime);
     }
 
 }

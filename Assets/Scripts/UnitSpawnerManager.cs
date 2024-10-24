@@ -7,31 +7,24 @@ using Photon.Realtime;
 public class UnitSpawnerManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] Transform spawnerPosition;
+
     WaitForSeconds waitForSeconds = new WaitForSeconds(5);
-    [SerializeField] GameObject gameObject;
 
-    private void Start()
+    void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if(PhotonNetwork.IsMasterClient)
         {
-            StartCoroutine(Corouti());
-        }
-    
+            StartCoroutine(Create());
+        }      
     }
 
-    IEnumerator Corouti()
+    public IEnumerator Create()
     {
-        while (true)
+        while(true)
         {
-            PhotonNetwork.InstantiateRoomObject(gameObject.name, spawnerPosition.position, Quaternion.identity);
+            PhotonNetwork.InstantiateRoomObject("Rake", spawnerPosition.position, Quaternion.identity);
+
             yield return waitForSeconds;
-
         }
-    }
+    }  
 }
-
-
-
-
-
-    
