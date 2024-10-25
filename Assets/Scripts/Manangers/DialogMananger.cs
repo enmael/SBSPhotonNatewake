@@ -10,6 +10,7 @@ public class DialogManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] InputField inputField;
     [SerializeField] Transform parentTransform;
+    [SerializeField] ScrollRect scrollRect; 
 
     void Update()
     {
@@ -22,6 +23,8 @@ public class DialogManager : MonoBehaviourPunCallbacks
            string talk  = photonView.Owner.NickName + " : " + inputField.text;
             //Rpc Target.All :현재 룸에 있는 모든 클라이언트에 Talk 함수를 실행하려는 명령
             photonView.RPC("Talk", RpcTarget.All, talk);
+
+            scrollRect.verticalNormalizedPosition = 0.0f;
         }
     }
     [PunRPC]
@@ -37,6 +40,8 @@ public class DialogManager : MonoBehaviourPunCallbacks
 
         //채팅을 입력한 후에도 이어서 입력할수 있도록 설정한빈다
         inputField.ActivateInputField();
+
+        scrollRect.verticalNormalizedPosition = 0.0f;
 
         //inputField.의 텍스트를 초기화
         inputField.text = "";

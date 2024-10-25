@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
   DevAccountEmail: enmael25@gmail.com
-  DevAccountToken: wmiskqm7998k4hg9ckw43gwfh14uonxzj5ywr4dzpoyqqy88ia4itahtpocn7mmsxasatn9jd9y89n1a4wuhqmbc4ksyqoyegeo9y4k1z1hqe7agnbn9pnr4etg81z9n6cdjhc15qm3rarb9j8hhguiykfp6n86t4ty4hnc7pswqxpapduadoc9nh346ghnh59nutsnb
+  DevAccountToken: mttenz7rsm6gnpbo5xi5btidces4ntnqz7die99aaiebxszqasbcyrjh9pjoq1kdf8f6p7ym561gqcgep4nfuddp1hbqo63rcs3bbx1pgrfyxzgq1y9tuth4icttzs7e3atfsj1e9btq8e8t1gymetiujj65y5qu389m93cabceb4mrthsgfzmm1w41nrib71pu31ac5
   AadAuthorization: 
-  SelectedStudio: JSB
+  SelectedStudio: 
   SdkPath: Assets/PlayFabSDK
   EdExPath: 
   LocalCloudScriptPath: 
